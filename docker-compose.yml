@@ -1,0 +1,16 @@
+version: 'version'
+services:
+  web:
+    build: "srcs/docker-wordpress"
+    ports:
+      - "8080:8080"
+  db:
+    image: "mariadb"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    
+    volumes:
+      - db-wordpress: /foo
+
+volumes:
+  db-wordpress:
