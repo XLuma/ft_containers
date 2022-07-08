@@ -1,6 +1,0 @@
-FROM nginx
-
-
-
-
-

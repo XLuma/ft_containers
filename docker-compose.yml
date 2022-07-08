@@ -1,16 +1,60 @@
-version: 'version'
+version: '3.5'
+
 services:
-  web:
-    build: "srcs/docker-wordpress"
-    ports:
-      - "8080:8080"
-  db:
-    image: "mariadb"
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-    
+  mariadb:
+    container_name: mariadb
+    build: ./srcs/mariadb
+    env_file:
+      - ./srcs/.env
     volumes:
-      - db-wordpress: /foo
+      - db:/var/lib/mysql
+    networks:
+      - inception
+    restart: unless-stopped
+
+  nginx:
+    container_name: nginx
+    build: ./srcs/nginx
+    ports:
+      - "443:443"
+    depends_on:
+      - wordpress
+    volumes:
+      - wp:/var/www/html
+    networks:
+      - inception
+    restart: unless-stopped
+
+  wordpress:
+    container_name: wordpress
+    build: ./srcs/wordpress
+    env_file:
+     - ./srcs/.env
+    depends_on:
+      - mariadb
+    volumes:
+      - wp:/var/www/html
+    networks:
+      - inception
+    restart: unless-stopped
 
 volumes:
-  db-wordpress:
+  db:
+    driver: local
+    name: db
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/llaplant/data/mariadb
+  wp:
+    driver: local
+    name: wp
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/llaplant/data/wordpress
+
+networks:
+  inception:
+    name: inception
+    driver: bridge
