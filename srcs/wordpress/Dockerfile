@@ -8,7 +8,7 @@ EXPOSE 5000
 COPY ./conf/www.conf /etc/php/7.3/fpm/pool.d
 COPY ./script /var/www/
 
-RUN chmod + x /var/www/wp_start.sh
+RUN chmod +x /var/www/wp_start.sh
 
 ENTRYPOINT [ "/var/www/wp_start.sh" ]
 CMD ["/usr/sbin/php-fpm7.3", "--nodaemonize"]

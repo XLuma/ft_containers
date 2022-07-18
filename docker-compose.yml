@@ -1,17 +1,6 @@
 version: '3.5'
 
 services:
-  mariadb:
-    container_name: mariadb
-    build: ./srcs/mariadb
-    env_file:
-      - ./srcs/.env
-    volumes:
-      - db:/var/lib/mysql
-    networks:
-      - inception
-    restart: unless-stopped
-
   nginx:
     container_name: nginx
     build: ./srcs/nginx
@@ -37,7 +26,17 @@ services:
     networks:
       - inception
     restart: unless-stopped
-
+    
+  mariadb:
+    container_name: mariadb
+    build: ./srcs/mariadb
+    env_file:
+      - ./srcs/.env
+    volumes:
+      - db:/var/lib/mysql
+    networks:
+      - inception
+    restart: unless-stopped  
 volumes:
   db:
     driver: local
@@ -45,14 +44,14 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/llaplant/data/mariadb
+      device: /goinfre/volumes/mariadb
   wp:
     driver: local
     name: wp
     driver_opts:
       type: none
       o: bind
-      device: /home/llaplant/data/wordpress
+      device: /goinfre/volumes/wordpress
 
 networks:
   inception:
