@@ -6,6 +6,7 @@ EXPOSE 443
 
 COPY ./conf/default /etc/nginx/sites-enabled/default
 COPY ./script/start.sh /var/www
+RUN chmod +x /var/www/start.sh
 
-ENTRYPOINT [ "var/www/start.sh" ]
-CMD [ "nginx", "-g", "daeom off;" ]
+ENTRYPOINT [ "/var/www/start.sh" ]
+CMD [ "nginx", "-g", "daemon off;" ]
