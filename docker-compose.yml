@@ -8,6 +8,8 @@ services:
       - "443:443"
     depends_on:
       - wordpress
+    links:
+      - wordpress
     volumes:
       - wp:/var/www/html
     networks:
@@ -20,6 +22,8 @@ services:
     env_file:
      - ./srcs/.env
     depends_on:
+      - mariadb
+    links:
       - mariadb
     volumes:
       - wp:/var/www/html
