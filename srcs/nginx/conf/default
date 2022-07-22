@@ -1,7 +1,7 @@
 server {
     listen 443 ssl;
     listen [::]:443 ssl;
-    server_name localhost gcollet.42.fr www.gcollet.42.fr;
+    server_name localhost llaplant.42.fr www.llaplant.42.fr;
     ssl_certificate /etc/ssl/certs/nginx.crt;
     ssl_certificate_key /etc/ssl/private/nginx.key;
     ssl_protocols TLSv1.2 TLSv1.3;
