@@ -10,11 +10,10 @@ re:
 clean: down
 	rm -rdf /home/llaplant/data/mariadb
 	rm -rdf /home/llaplant/data/wordpress
-	@docker stop $$(docker ps -qa);\
-	docker rm $$(docker ps -qa);\
-	docker rmi -f $$(docker images -qa);\
-	docker volume rm $$(docker volume ls -q);\
-	docker network rm $$(docker network ls -q);\
+-	docker rm $$(docker ps -qa);\
+-	docker rmi -f $$(docker images -qa);\
+-	docker volume rm $$(docker volume ls -q);\
+-	docker network rm $$(docker network ls -q);\
 
-fclean: clean
+fclean:
 	@ docker system prune -f
