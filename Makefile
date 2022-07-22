@@ -1,6 +1,6 @@
 all:
-	mkdir /home/llaplant/data/mariadb
-	mkdir /home/llaplant/data/wordpress
+	mkdir -p /home/llaplant/data/mariadb
+	mkdir -p /home/llaplant/data/wordpress
 	echo "llaplant.42.fr localhost" >> /etc/hosts
 	@docker-compose -f ./docker-compose.yml up -d
 down:
