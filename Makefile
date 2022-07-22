@@ -12,4 +12,4 @@ clean: down
 	rm -rdf /home/llaplant/data/wordpress
 
 fclean: clean
-	@ docker system prune -f
+	@ docker system prune -a -f
