@@ -5,11 +5,8 @@ services:
     container_name: nginx
     build: ./srcs/requirements/nginx
     ports:
-      - "80:80"
       - "443:443"
     depends_on:
-      - wordpress
-    links:
       - wordpress
     volumes:
       - wp:/var/www/html
@@ -23,8 +20,6 @@ services:
     env_file:
      - ./srcs/.env
     depends_on:
-      - mariadb
-    links:
       - mariadb
     volumes:
       - wp:/var/www/html
