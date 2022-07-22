@@ -1,7 +1,10 @@
 server {
-    listen 80;
-    server_name localhost llaplant.42.fr www.llaplant.42.fr;
-    return 301 https://$host$request_uri;
+
+	listen 80;
+	listen [::]:80;
+	server_name llaplant.42.fr;
+	return 301 https://$host$request_uri;
+
 }
 server {
     listen 443 ssl;
