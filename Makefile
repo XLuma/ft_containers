@@ -7,7 +7,7 @@ down:
 	@docker-compose -f ./docker-compose.yml down
 re:
 	@docker-compose -f ./docker-compose.yml up --build
-clean: stop
+clean: down
 	rm -rdf /home/llaplant/data/mariadb
 	rm -rdf /home/llaplant/data/wordpress
 	@docker stop $$(docker ps -qa);\
